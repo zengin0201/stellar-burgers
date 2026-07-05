@@ -1,17 +1,22 @@
-import { FC, SyntheticEvent, useState } from 'react';
+import { FC, useState, SyntheticEvent } from 'react';
 import { LoginUI } from '@ui-pages';
+import { useAppDispatch, useAppSelector } from '../../services/store';
+import { loginUser } from '../../services/slices/userSlice';
 
 export const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useAppDispatch();
+  const { error } = useAppSelector((state) => state.user);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+    dispatch(loginUser({ email, password }));
   };
 
   return (
     <LoginUI
-      errorText=''
+      errorText={error || ''}
       email={email}
       setEmail={setEmail}
       password={password}
