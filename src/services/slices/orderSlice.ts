@@ -40,6 +40,7 @@ const orderSlice = createSlice({
   reducers: {
     clearOrderData: (state) => {
       state.orderData = null;
+      state.orderModalData = null;
       state.name = '';
     }
   },
@@ -52,7 +53,9 @@ const orderSlice = createSlice({
       .addCase(createOrder.fulfilled, (state, action) => {
         state.orderRequest = false;
         state.orderData = action.payload.order as unknown as TOrder;
+        state.orderModalData = action.payload.order as unknown as TOrder;
         state.name = action.payload.name;
+
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.orderRequest = false;

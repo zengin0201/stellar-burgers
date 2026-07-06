@@ -10,22 +10,14 @@ export const BurgerConstructor: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { bun, ingredients } = useAppSelector(
-    (state) => state.burgerConstructor
-  );
-  const { orderRequest, orderModalData } = useAppSelector(
-    (state) => state.order
-  );
+  const { bun, ingredients } = useAppSelector((state) => state.burgerConstructor);
+  const { orderRequest, orderModalData } = useAppSelector((state) => state.order);
   const user = useAppSelector((state) => state.user.user);
 
-  const constructorItems = {
-    bun: bun,
-    ingredients: ingredients
-  };
+  const constructorItems = { bun, ingredients };
 
   const onOrderClick = () => {
     if (!constructorItems.bun || orderRequest) return;
-    
     if (!user) {
       navigate('/login');
       return;
@@ -36,13 +28,15 @@ export const BurgerConstructor: FC = () => {
       ...constructorItems.ingredients.map((item) => item._id),
       constructorItems.bun._id
     ];
-
-    dispatch(createOrder(ingredientIds));
+    dispatch(createOrder(ingredientIds))
+      .unwrap()
+      .then(() => {
+        dispatch(clearConstructor());
+      });
   };
 
   const closeOrderModal = () => {
     dispatch(clearOrderData());
-    dispatch(clearConstructor());
   };
 
   const price = useMemo(
