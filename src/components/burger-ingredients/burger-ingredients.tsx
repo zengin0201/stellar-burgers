@@ -4,12 +4,14 @@ import { useInView } from 'react-intersection-observer';
 import { TTabMode } from '@utils-types';
 import { BurgerIngredientsUI } from '../ui/burger-ingredients';
 import { useAppSelector } from '../../services/store';
-import { selectBuns, selectMains, selectSauces } from '../../services/selectors';
+import {
+  selectBuns,
+  selectMains,
+  selectSauces
+} from '../../services/selectors';
 
 export const BurgerIngredients: FC = () => {
-  const ingredients = useAppSelector(
-    (state) => state.ingredients.ingredients
-  );
+  const ingredients = useAppSelector((state) => state.ingredients.ingredients);
 
   const buns = useAppSelector(selectBuns);
   const mains = useAppSelector(selectMains);
@@ -19,7 +21,6 @@ export const BurgerIngredients: FC = () => {
   const titleBunRef = useRef<HTMLHeadingElement>(null);
   const titleMainRef = useRef<HTMLHeadingElement>(null);
   const titleSaucesRef = useRef<HTMLHeadingElement>(null);
-  
 
   const [bunsRef, inViewBuns] = useInView({
     threshold: 0

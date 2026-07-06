@@ -10,7 +10,9 @@ export const OrderInfo: FC = () => {
   const { number } = useParams<{ number: string }>();
   const dispatch = useAppDispatch();
 
-  const ingredients: TIngredient[] = useAppSelector((state) => state.ingredients.ingredients);
+  const ingredients: TIngredient[] = useAppSelector(
+    (state) => state.ingredients.ingredients
+  );
   const feedOrders = useAppSelector((state) => state.feed.orders);
   const userOrders = useAppSelector((state) => state.userOrders.orders);
   const modalOrder = useAppSelector((state) => state.order.orderModalData);
@@ -28,7 +30,9 @@ export const OrderInfo: FC = () => {
   const orderInfo = useMemo(() => {
     if (!orderData || !ingredients.length) return null;
     const date = new Date(orderData.createdAt);
-    type TIngredientsWithCount = { [key: string]: TIngredient & { count: number } };
+    type TIngredientsWithCount = {
+      [key: string]: TIngredient & { count: number };
+    };
 
     const ingredientsInfo = orderData.ingredients.reduce(
       (acc: TIngredientsWithCount, item) => {

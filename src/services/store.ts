@@ -14,12 +14,12 @@ export const rootReducer = combineReducers({
   burgerConstructor: constructorReducer,
   feed: feedReducer,
   userOrders: userOrdersReducer,
-  order: orderReducer,
+  order: orderReducer
 });
 
 const store = configureStore({
   reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: process.env.NODE_ENV !== 'production'
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

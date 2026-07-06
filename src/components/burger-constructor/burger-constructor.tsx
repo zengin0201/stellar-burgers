@@ -10,8 +10,12 @@ export const BurgerConstructor: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { bun, ingredients } = useAppSelector((state) => state.burgerConstructor);
-  const { orderRequest, orderModalData } = useAppSelector((state) => state.order);
+  const { bun, ingredients } = useAppSelector(
+    (state) => state.burgerConstructor
+  );
+  const { orderRequest, orderModalData } = useAppSelector(
+    (state) => state.order
+  );
   const user = useAppSelector((state) => state.user.user);
 
   const constructorItems = { bun, ingredients };

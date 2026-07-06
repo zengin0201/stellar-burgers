@@ -14,7 +14,7 @@ export const fetchOrderByNumber = createAsyncThunk(
   'order/fetchOrderByNumber',
   async (number: number) => {
     const data = await getOrderByNumberApi(number);
-    return data.orders[0]; 
+    return data.orders[0];
   }
 );
 
@@ -55,7 +55,6 @@ const orderSlice = createSlice({
         state.orderData = action.payload.order as unknown as TOrder;
         state.orderModalData = action.payload.order as unknown as TOrder;
         state.name = action.payload.name;
-
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.orderRequest = false;

@@ -7,7 +7,7 @@ import { useAppSelector } from '../../services/store';
 export const IngredientDetails: FC = () => {
   const { id } = useParams<{ id: string }>();
   const ingredients = useAppSelector((state) => state.ingredients.ingredients);
-  
+
   const ingredientData = ingredients.find((item) => item._id === id);
 
   if (!ingredientData) {

@@ -19,7 +19,7 @@ type TIngredientsState = {
 const initialState: TIngredientsState = {
   ingredients: [],
   isLoading: false,
-  error: null,
+  error: null
 };
 
 const ingredientsSlice = createSlice({
@@ -40,7 +40,7 @@ const ingredientsSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || 'Ошибка загрузки ингредиентов';
       });
-  },
+  }
 });
 
 export default ingredientsSlice.reducer;

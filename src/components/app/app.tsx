@@ -13,12 +13,7 @@ import {
 } from '@pages';
 import styles from './app.module.css';
 
-import {
-  AppHeader,
-  Modal,
-  OrderInfo,
-  IngredientDetails
-} from '@components';
+import { AppHeader, Modal, OrderInfo, IngredientDetails } from '@components';
 import { Preloader } from '@ui';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 import { useAppDispatch, useAppSelector } from '../../services/store';
@@ -58,19 +53,37 @@ const App = () => {
       ) : ingredients.length > 0 ? (
         <>
           <Routes location={background || location}>
-            <Route path="/" element={<ConstructorPage />} />
-            <Route path="/feed" element={<Feed />} />
-
-            <Route path="/login" element={<OnlyUnAuth component={<Login />} />} />
-            <Route path="/register" element={<OnlyUnAuth component={<Register />} />} />
-            <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword />} />} />
-            <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword />} />} />
-
-            <Route path="/profile" element={<OnlyAuth component={<Profile />} />} />
-            <Route path="/profile/orders" element={<OnlyAuth component={<ProfileOrders />} />} />
+            <Route path='/' element={<ConstructorPage />} />
+            <Route path='/feed' element={<Feed />} />
 
             <Route
-              path="/ingredients/:id"
+              path='/login'
+              element={<OnlyUnAuth component={<Login />} />}
+            />
+            <Route
+              path='/register'
+              element={<OnlyUnAuth component={<Register />} />}
+            />
+            <Route
+              path='/forgot-password'
+              element={<OnlyUnAuth component={<ForgotPassword />} />}
+            />
+            <Route
+              path='/reset-password'
+              element={<OnlyUnAuth component={<ResetPassword />} />}
+            />
+
+            <Route
+              path='/profile'
+              element={<OnlyAuth component={<Profile />} />}
+            />
+            <Route
+              path='/profile/orders'
+              element={<OnlyAuth component={<ProfileOrders />} />}
+            />
+
+            <Route
+              path='/ingredients/:id'
               element={
                 <div className={styles.detailPageWrap}>
                   <IngredientDetails />
@@ -78,7 +91,7 @@ const App = () => {
               }
             />
             <Route
-              path="/feed/:number"
+              path='/feed/:number'
               element={
                 <div className={styles.detailPageWrap}>
                   <OrderInfo />
@@ -86,7 +99,7 @@ const App = () => {
               }
             />
             <Route
-              path="/profile/orders/:number"
+              path='/profile/orders/:number'
               element={
                 <OnlyAuth
                   component={
@@ -98,33 +111,33 @@ const App = () => {
               }
             />
 
-            <Route path="*" element={<NotFound404 />} />
+            <Route path='*' element={<NotFound404 />} />
           </Routes>
 
           {background && (
             <Routes>
               <Route
-                path="/ingredients/:id"
+                path='/ingredients/:id'
                 element={
-                  <Modal title="Детали ингредиента" onClose={handleModalClose}>
+                  <Modal title='Детали ингредиента' onClose={handleModalClose}>
                     <IngredientDetails />
                   </Modal>
                 }
               />
               <Route
-                path="/feed/:number"
+                path='/feed/:number'
                 element={
-                  <Modal title="" onClose={handleModalClose}>
+                  <Modal title='' onClose={handleModalClose}>
                     <OrderInfo />
                   </Modal>
                 }
               />
               <Route
-                path="/profile/orders/:number"
+                path='/profile/orders/:number'
                 element={
                   <OnlyAuth
                     component={
-                      <Modal title="" onClose={handleModalClose}>
+                      <Modal title='' onClose={handleModalClose}>
                         <OrderInfo />
                       </Modal>
                     }
